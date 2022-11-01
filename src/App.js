@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Footer from './Components/Footer/Footer';
+import Header from './Components/Header/Header';
+import Product from './Components/Product/Product';
+import Social from './Components/SocialMedia/Social';
+
+
 
 function App() {
+  const[cartdata,setcartdata] = useState([])
+
+  const addtocart = (data) => {
+    setcartdata([...cartdata,{data}]);
+  }
+ 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   <>
+    <Header cartdata={cartdata}/>
+    <Product addtocart={addtocart}/>
+    <Social/>
+    <Footer/>
+   </> 
+  )
 }
 
 export default App;
